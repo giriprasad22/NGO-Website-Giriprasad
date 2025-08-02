@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basti Ki Pathshala Foundation – Where Learning Knows No Boundaries</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Floating label styles */
+    .label-float { position:relative; }
+    .label-float input:focus ~ label,
+    .label-float input:not(:placeholder-shown) ~ label,
+    .label-float select:focus ~ label,
+    .label-float select:not([value=""]) ~ label,
+    .label-float textarea:focus ~ label,
+    .label-float textarea:not(:placeholder-shown) ~ label {
+      top:-18px; left:3px; font-size:0.88rem; color:#059669; background: #fff4; padding:0 0.18rem;
+    }
+    .label-float label {
+      position:absolute; left:9px; top:16px;
+      pointer-events:none; transition:0.19s; color:#555b; background:none;
+    }
+    .label-float input,.label-float select,.label-float textarea { padding-top:1.2rem!important; }
+
+    /* Button Gradient & Hover */
+    .btn-gradient {
+      background: linear-gradient(90deg, #10b981 0%, #2563eb 100%);
+      color: #fff;
+      transition: transform 0.18s, box-shadow 0.21s;
+      box-shadow: 0 3px 20px #10b981aa;
+    }
+    .btn-gradient:hover, .btn-gradient:focus {
+      transform: scale(1.045) translateY(-2px);
+      box-shadow: 0 8px 30px #2563ebaa;
+      outline: 2px solid #059669;
+    }
+
+    /* Glassmorphism and animated gradient border with slower speed */
+    .glass-advanced {
+      background: rgba(255,255,255,0.80);
+      box-shadow: 0 14px 48px rgba(37,99,235,0.09);
+      backdrop-filter: blur(12px) saturate(1.08);
+      border-radius: 2rem;
+      border: 1.5px solid rgba(37,99,235,0.08);
+      transition: backdrop-filter 0.2s, box-shadow 0.18s;
+    }
+    .glass-advanced:hover {
+      box-shadow: 0 20px 52px #10b98122;
+      backdrop-filter: blur(16px) saturate(1.12);
+    }
+    .animated-border {
+      position: relative;
+      z-index: 1;
+      border-radius: 2.2rem;
+      overflow: hidden;
+    }
+    .animated-border::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -3px;
+      border-radius: 2.2rem;
+      background: linear-gradient(100deg, #2563eb, #10b981, #fbbf24, #2563eb 90%);
+      background-size: 300% 300%;
+      animation: borderMove 14s linear infinite; /* SLOWER NOW */
+    }
+    @keyframes borderMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Section Title with Underline */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      font-weight: 900;
+      padding-bottom: 0.35em;
+      color: #059669;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      height: 4px;
+      width: 80px;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      border-radius: 2px;
+      margin-top: 0.18em;
+    }
+
+    .icon-circle {
+      background: linear-gradient(120deg, #34d399, #3b82f6cc 80%);
+      color: white;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.24em;
+      margin-right: 0.7em;
+      box-shadow: 0 2px 10px #10b98150;
+      flex-shrink: 0;
+    }
+
+    /* Animations (minimal version) */
+    .animate-fadeIn, .animate-fadeInSlow, .animate-bounceIn, .animate-slideInRight, .animate-slideUp, .animate-slideUpSlow { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: no-preference) {
+      .animate-fadeIn, .animate-fadeInSlow, .animate-bounceIn, .animate-slideInRight, .animate-slideUp, .animate-slideUpSlow {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 1s, transform 1s;
+      }
+      .is-visible { opacity:1 !important; transform:none !important; }
+    }
+
+    /* HeartBeat animation */
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1);}
+      14% { transform: scale(1.09);}
+      28% { transform: scale(1);}
+      42% { transform: scale(1.13);}
+      70% { transform: scale(1);}
+    }
+    .animate-heartBeat {
+      animation: heartBeat 1.8s ease infinite;
+      display: inline-block;
+    }
+    
+    /* Custom spacing for better readability */
+    .content-space-y > * + * {
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-emerald-100 to-blue-100 min-h-screen font-sans text-gray-800 antialiased">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-40 backdrop-blur-xl bg-white/80 shadow-lg px-5 py-3 flex items-center justify-between rounded-bl-xl rounded-br-xl transition">
+    <a class="flex items-center gap-2 font-extrabold text-green-700 text-2xl tracking-wide" href="#home">
+      <i class="bi bi-emoji-smile text-green-700"></i>
+      Basti Ki Pathshala Foundation
+    </a>
+    <ul class="hidden sm:flex gap-6 text-lg font-medium">
+      <li><a href="#home" class="hover:text-emerald-700 transition">Home</a></li>
+      <li>
+        <a href="#about" class="hover:text-emerald-700 transition section-title flex items-center gap-2">
+          <i class="bi bi-mortarboard-fill text-[#059669]"></i> About
+        </a>
+      </li>
+      <li><a href="#volunteer" class="hover:text-emerald-700 transition">Volunteer</a></li>
+    </ul>
+    <a href="#volunteer" class="sm:hidden block text-lg text-emerald-700 font-bold hover:underline transition">Join</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-14 pb-20 flex items-center justify-center min-h-[65vh] bg-gradient-to-br from-green-200 via-emerald-100 to-blue-100 animate-fadeIn">
+    <div class="w-full max-w-3xl mx-auto text-center flex flex-col gap-7">
+      <h1 class="text-4xl md:text-5xl font-black text-emerald-800 leading-tight drop-shadow-lg tracking-tight">
+        Where Learning Knows No Boundaries<br />
+        <span class="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">Basti Ki Pathshala Foundation</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-green-900 mb-2">
+        A beacon of hope breaking the chains of poverty through the transformative power of education for India's slum and marginalized children.
+      </p>
+      <div class="flex flex-wrap gap-2 justify-center animate-bounceIn">
+        <span class="px-4 py-1 rounded-full bg-green-200/80 text-green-900 text-base">#EducationForAll</span>
+        <span class="px-4 py-1 rounded-full bg-emerald-200/70 text-emerald-800 text-base">#BreakingBarriers</span>
+        <span class="px-4 py-1 rounded-full bg-blue-200/60 text-sky-900 text-base">#EmpowerHope</span>
+      </div>
+      <a href="#volunteer" class="btn-gradient px-8 py-4 mt-4 mx-auto rounded-full font-bold text-xl focus:ring-4 focus:ring-green-300 animate-pulse outline-none"
+        >Become a Volunteer</a>
+      <small class="text-gray-500 animate-fadeInSlow">Scroll down to join our mission</small>
+    </div>
+  </section>
+
+  <!-- About Us Section - Improved Layout -->
+  <section id="about" class="relative max-w-5xl mx-auto mt-6 mb-14 glass-advanced animated-border p-8 sm:p-12 md:p-14 flex flex-col gap-8 md:flex-row items-stretch animate-slideUp">
+    <div class="flex-1 flex flex-col gap-8">
+      <div class="content-space-y">
+        <h2 class="section-title text-3xl mb-6 flex items-center gap-2">
+          <i class="bi bi-mortarboard-fill text-[#059669]"></i> About Basti Ki Pathshala Foundation
+        </h2>
+        
+        <div class="space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            <strong class="text-emerald-800">Basti Ki Pathshala Foundation</strong> is a government-registered NGO (Indian Societies Act, 1860) dedicated to <strong>breaking the barriers of education in underserved communities</strong>.
+          </p>
+          
+          <p>
+            Our vision is to empower underprivileged children living in slums and marginalized localities through free quality education, life skills, nutrition, and holistic development.
+          </p>
+          
+          <p>
+            We create safe, nurturing spaces where every child can learn, dream, and thrive.
+          </p>
+        </div>
+        
+        <ul class="space-y-4 text-gray-800">
+          <li class="flex items-start">
+            <span class="icon-circle mt-1" aria-hidden="true"><i class="bi bi-book-half"></i></span>
+            <div>
+              <strong class="text-emerald-800">Accessible Learning:</strong> Free, nurturing classes for children in Noida and Delhi slums—every session a step toward independence.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="icon-circle mt-1" aria-hidden="true"><i class="bi bi-people-fill"></i></span>
+            <div>
+              <strong class="text-emerald-800">Life Skills & Support:</strong> Personality development, digital literacy, hygiene, nutrition, creative arts, and sports programs for holistic empowerment.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="icon-circle mt-1" aria-hidden="true"><i class="bi bi-heart-fill"></i></span>
+            <div>
+              <strong class="text-emerald-800">Community Uplift:</strong> Family and community engagement with women's groups, volunteers, and donors driving change collectively.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="icon-circle mt-1" aria-hidden="true"><i class="bi bi-globe"></i></span>
+            <div>
+              <strong class="text-emerald-800">Sustainable Change:</strong> Long-term transformation enabled by advocacy, awareness, and strategic partnerships.
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="border-t border-gray-200 pt-6 mt-4">
+        <div class="font-semibold text-xl text-green-900">Abhinav Pandey</div>
+        <div class="text-green-700 mb-3">Founder &amp; President</div>
+        <div class="mb-3">
+          <a href="https://bastikipathshala.org" class="hover:text-blue-700 text-lg inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-globe"></i> bastikipathshala.org
+          </a>
+        </div>
+        <div class="flex gap-4 text-2xl mb-3">
+          <a href="https://www.instagram.com/bastikipathshala.ngo/" class="hover:text-pink-600" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="text-sm text-gray-600 break-all" aria-label="Official Email">bastikipathshala@gmail.com</div>
+      </div>
+    </div>
+    
+    <div class="flex-1 flex flex-col items-center justify-center text-center mt-8 md:mt-0">
+      <div class="bg-gradient-to-tr from-emerald-200 via-green-100 to-blue-100 border border-green-100 shadow-xl rounded-2xl p-8 flex flex-col gap-4 min-h-[200px] justify-center">
+        <span class="text-3xl md:text-4xl font-black text-green-800 drop-shadow-lg" aria-label="Foundation Inspirational Quote">
+          "Where hope is our currency, and education is our legacy."
+        </span>
+        <span class="text-lg text-gray-800">Your support helps rewrite the story of every child — a chance, a lesson, a future.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer Form Section -->
+  <section id="volunteer" class="max-w-xl mx-auto my-16 glass-advanced p-8 md:p-12 rounded-3xl shadow-2xl border animate-slideInRight transition" role="region" aria-labelledby="volunteerHeading">
+    <h2 id="volunteerHeading" class="text-2xl font-bold text-emerald-900 mb-4 text-center flex items-center justify-center gap-2">
+      <i class="bi bi-apple text-green-600" aria-hidden="true"></i> Join Our Team
+    </h2>
+    <p class="text-gray-700 mb-7 text-center">
+      Help break the cycle of poverty. Empower children to reach their full potential. No matter your background, your compassion can open doors where classrooms once lacked walls.
+    </p>
+    <form id="volunteerForm" class="space-y-6 text-lg" novalidate>
+      <div class="label-float">
+        <input id="name" name="name" required type="text" autocomplete="off"
+          class="block w-full px-4 pb-2 pt-5 rounded-lg border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none transition bg-green-50 placeholder-transparent"
+          placeholder=" " aria-required="true" aria-describedby="nameHelp" />
+        <label for="name">Full Name</label>
+        <small id="nameHelp" class="sr-only">Enter your full name</small>
+      </div>
+      <div class="label-float">
+        <input id="email" name="email" required type="email" autocomplete="off"
+          class="block w-full px-4 pb-2 pt-5 rounded-lg border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none transition bg-green-50 placeholder-transparent"
+          placeholder=" " aria-required="true" aria-describedby="emailHelp" />
+        <label for="email">Email Address</label>
+        <small id="emailHelp" class="sr-only">Enter your email address</small>
+      </div>
+      <div class="label-float">
+        <select id="interest" name="interest" required
+          class="block w-full px-4 pb-2 pt-5 rounded-lg border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none transition bg-green-50 placeholder-transparent"
+          aria-required="true" aria-describedby="interestHelp">
+          <option value="" disabled selected>Select your main area of interest</option>
+          <option>Teaching & Mentoring</option>
+          <option>Community Events</option>
+          <option>Fundraising & Campaigns</option>
+          <option>Health & Hygiene Awareness</option>
+          <option>Digital Outreach</option>
+        </select>
+        <label for="interest">Interest/Skill</label>
+        <small id="interestHelp" class="sr-only">Choose your primary volunteer interest</small>
+      </div>
+      <div class="label-float">
+        <textarea id="message" name="message" rows="3"
+          class="block w-full px-4 pb-2 pt-5 rounded-lg border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none transition bg-green-50 placeholder-transparent"
+          placeholder=" " aria-describedby="messageHelp"></textarea>
+        <label for="message">Why do you want to volunteer?</label>
+        <small id="messageHelp" class="sr-only">Share why you want to volunteer (optional)</small>
+      </div>
+      <button type="submit"
+        class="btn-gradient relative w-full py-3 px-6 mt-3 rounded-full font-bold text-xl shadow-md focus:ring-4 focus:ring-green-200 transition outline-none hover:scale-105"
+        aria-label="Submit volunteer application"
+      >
+        <span class="relative animate-heartBeat">Submit Application</span>
+      </button>
+      <div id="formSuccess" class="hidden text-green-800 font-semibold text-center mt-4" role="alert" aria-live="assertive">
+        🌟 Thank you for joining! Our team will connect with you soon.
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-14 py-6 bg-gradient-to-t from-green-200 to-emerald-100/75 rounded-t-3xl text-center shadow-xl animate-slideUpSlow">
+    <div class="flex items-center justify-center gap-4 mb-2 text-2xl">
+      <a href="https://bastikipathshala.org" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700" aria-label="Official Website"><i class="bi bi-globe"></i></a>
+      <a href="https://www.instagram.com/bastikipathshala.ngo/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-600" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+      <a href="mailto:bastikipathshala@gmail.com" class="hover:text-green-700" aria-label="BKP Foundation Email"><i class="bi bi-envelope-fill"></i></a>
+    </div>
+    <div class="text-md text-gray-600">
+      &copy; 2025 Basti Ki Pathshala Foundation | Made with <span class="text-pink-600">♥</span> by <span class="font-bold">M. Giri Prasad</span>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Floating label for select element
+      document.querySelectorAll('.label-float select').forEach(sel => {
+        function updateLabel() {
+          if (sel.value !== "") {
+            sel.nextElementSibling.style.top = "-18px";
+            sel.nextElementSibling.style.left = "3px";
+            sel.nextElementSibling.style.fontSize = "0.88rem";
+            sel.nextElementSibling.style.color = "#059669";
+            sel.nextElementSibling.style.background = "#fff4";
+            sel.nextElementSibling.style.padding = "0 0.18rem";
+          } else {
+            sel.nextElementSibling.style = "";
+          }
+        }
+        sel.addEventListener('change', updateLabel);
+        updateLabel();
+      });
+
+      // Fade-in on scroll (minimal, robust)
+      const fadeIns = document.querySelectorAll('.animate-fadeIn, .animate-fadeInSlow, .animate-bounceIn, .animate-slideInRight, .animate-slideUp, .animate-slideUpSlow');
+      function checkVisibility() {
+        fadeIns.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) {
+            section.classList.add('is-visible');
+          }
+        });
+      }
+      checkVisibility();
+      window.addEventListener('scroll', checkVisibility);
+
+      // Form submit feedback handler
+      const form = document.getElementById('volunteerForm');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const success = document.getElementById('formSuccess');
+        success.classList.remove('hidden');
+        setTimeout(() => {
+          success.classList.add('hidden');
+          form.reset();
+          document.querySelectorAll('.label-float input, .label-float select, .label-float textarea').forEach(el => {
+            el.dispatchEvent(new Event('input'));
+            if (el.tagName.toLowerCase() === 'select') {
+              el.dispatchEvent(new Event('change'));
+            }
+          });
+        }, 3200);
+      });
+      document.querySelectorAll('.label-float input, .label-float select, .label-float textarea').forEach(el => {
+        if(el.value) el.dispatchEvent(new Event('input'));
+      });
+    });
+  </script>
+</body>
+</html>
